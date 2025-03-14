@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(ServerEngine)
 SET(PROJECT_ROOT_PATH ".")
-include_directories(./ ./DBInterface  ../../Common ../../Common/Mysql ../../Common/Lua ../../Common/protobuf/src ../PublicData)
+include_directories(./ ./DBInterface  ../../Common /usr/include/lua5.3 ../../Common/protobuf/src ../PublicData)
+#include_directories(/usr/include/mysql)
 link_directories(../../Common/lib /usr/lib64/mysql)
 
 #DB接口

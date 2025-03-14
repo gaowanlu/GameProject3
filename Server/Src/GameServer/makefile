@@ -9,11 +9,11 @@ MY_INCLUDE=-I$(PWD) \
 		-I../WatcherClient \
 		-I../../Common \
 		-I../../Common/Sqlite \
-		-I../../Common/Lua
+		-I/usr/include/lua5.3
 					 
 CC_LIB=-L/usr/lib \
 	-L/lib \
-	-lpthread -lprotobuf -lsqlite3 -llua
+	-lpthread -lprotobuf -lsqlite3 -llua5.3
 			 
 MY_LIB=-L../Debug \
 	-L../ServerEngine \

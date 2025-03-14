@@ -108,7 +108,7 @@ TValue* AVLTree<TKey, TValue>::InsertAlloc( TKey Key )
     TNodeTypePtr pNode = AllocNode();
     if(pNode == NULL)
     {
-        ASSERT(FALSE);
+        assert(FALSE);
         return NULL;
     }
 
@@ -415,7 +415,7 @@ bool AVLTree<TKey, TValue>::Insert(TKey Key, TValue Value)
     TNodeTypePtr pNode = AllocNode();
     if(pNode == NULL)
     {
-        ASSERT(FALSE);
+        assert(FALSE);
         return false;
     }
 
@@ -440,7 +440,7 @@ bool AVLTree<TKey, TValue>::InsertInner(TNodeTypePtr& pParentNode, TNodeTypePtr 
 {
     if(pParentNode == NULL)
     {
-        ASSERT(FALSE);
+        assert(FALSE);
         return false;
     }
 
@@ -450,7 +450,7 @@ bool AVLTree<TKey, TValue>::InsertInner(TNodeTypePtr& pParentNode, TNodeTypePtr 
         {
             if(!InsertInner(pParentNode->m_pLeft, pInsertNode))
             {
-                ASSERT(FALSE);
+                assert(FALSE);
                 return false;
             }
         }
@@ -479,7 +479,7 @@ bool AVLTree<TKey, TValue>::InsertInner(TNodeTypePtr& pParentNode, TNodeTypePtr 
         {
             if(!InsertInner(pParentNode->m_pRight, pInsertNode))
             {
-                ASSERT(FALSE);
+                assert(FALSE);
                 return false;
             }
         }

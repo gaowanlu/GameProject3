@@ -7,8 +7,8 @@ DEFS = -DSERVER_ENGINE
 	 
 MY_INCLUDE=-I$(PWD) \
 		-I../../Common \
-		-I../../Common/Mysql \
-		-I../../Common/Lua 
+		-I/usr/include/mysql \
+		-I/usr/include/lua5.3 
 					 
 CC_LIB=-L/usr/lib \
 	-L/lib \

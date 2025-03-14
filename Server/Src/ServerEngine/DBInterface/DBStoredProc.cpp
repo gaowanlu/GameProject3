@@ -41,11 +41,11 @@ void CDBStoredProcedure::set_bool( int idx_, bool bval_ )
 	MYSQL_BIND* pBind = &m_pMybind[idx_];
 	if(pBind->buffer == NULL)
 	{
-		pBind->buffer = malloc(sizeof(my_bool));
+		pBind->buffer = malloc(sizeof(bool));
 	}
 
-	*(my_bool*)pBind->buffer = bval_;
-	pBind->buffer_length = sizeof(my_bool);
+	*(bool*)pBind->buffer = bval_;
+	pBind->buffer_length = sizeof(bool);
 	pBind->buffer_type = MYSQL_TYPE_TINY;
 	pBind->is_unsigned = UNSIGNED_FLAG;
 }

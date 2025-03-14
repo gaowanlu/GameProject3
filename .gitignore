@@ -1,3 +1,5 @@
+*.pid
+nohup.out
 #################
 ## Eclipse
 #################
@@ -42,6 +44,7 @@ local.properties
 
 # Build results
 
+*.o
 x64/
 build/
 [Oo]bj/

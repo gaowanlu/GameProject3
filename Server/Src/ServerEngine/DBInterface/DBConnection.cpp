@@ -192,7 +192,7 @@ BOOL CDBConnection::Execute(CDBStoredProcedure* pDBStoredProcedure)
         return FALSE;
     }
 
-    my_bool _bl = 1;
+    bool _bl = 1;
     mysql_stmt_attr_set(pMySqlStmt, STMT_ATTR_UPDATE_MAX_LENGTH, &_bl);
 
     if (mysql_stmt_param_count(pMySqlStmt) != pDBStoredProcedure->m_nCount)
@@ -391,7 +391,7 @@ BOOL CDBConnection::Query(CDBStoredProcedure* pDBStoredProcedure)
         return FALSE;
     }
 
-    my_bool _bl = 1;
+    bool _bl = 1;
     mysql_stmt_attr_set( pMySqlStmt, STMT_ATTR_UPDATE_MAX_LENGTH, &_bl );
 
     if ( 0 != mysql_stmt_bind_param( pMySqlStmt, pDBStoredProcedure->m_pMybind ) )

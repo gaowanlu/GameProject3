@@ -280,8 +280,10 @@ INT32 CommonFunc::DiffDays(UINT64 uTimeSrc, UINT64 uTimeDest)
         std::swap(uTimeSrc, uTimeDest);
     }
 
-    tm tm1 = *localtime(&(time_t)uTimeSrc);
-    tm tm2 = *localtime(&(time_t)uTimeDest);
+    time_t timeSrc = (time_t)uTimeSrc;
+    time_t timeDest = (time_t)uTimeDest;
+    tm tm1 = *localtime(&timeSrc);
+    tm tm2 = *localtime(&timeDest);
 
     uTimeSrc = tm1.tm_isdst > 0 ? uTimeSrc = uTimeSrc - 3600 : uTimeSrc;
     uTimeDest = tm2.tm_isdst > 0 ? uTimeDest = uTimeDest + 3600 : uTimeDest;

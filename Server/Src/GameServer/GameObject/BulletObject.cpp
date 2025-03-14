@@ -3,6 +3,10 @@
 #include "BulletObject.h"
 #include "SceneObject.h"
 #include "../Scene.h"
+#include <cmath>
+
+using std::sin;
+using std::cos;
 
 CBulletObject::CBulletObject(UINT64 uGuid, StBulletInfo* pBulletInfo, CSkillObject* pSkillObject, Vector3D startPos)
 {

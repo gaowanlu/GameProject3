@@ -1,21 +1,29 @@
 ﻿#ifndef __MYSQL_HELPER_H__
 #define __MYSQL_HELPER_H__
 
-#include "mysql.h"
+// enum net_async_status : int
+// {
+//     NET_ASYNC_SUCCESS = 0,
+//     NET_ASYNC_ERROR = 1,
+//     NET_ASYNC_NOT_READY = 2
+// };
+
+#include <mysql.h>
 
 class CppMySQL3DB;
 
 class CppMySQLQuery
 {
     friend class CppMySQL3DB;
+
 public:
     CppMySQLQuery();
 
-    //当执行拷贝构造函数后，括号里的类已经无效，不能再使用
-    CppMySQLQuery(CppMySQLQuery& rQuery);
+    // 当执行拷贝构造函数后，括号里的类已经无效，不能再使用
+    CppMySQLQuery(CppMySQLQuery &rQuery);
 
     // 当执行赋值构造函数后， = 右边的类已经无效，不能再使用
-    CppMySQLQuery& operator=(CppMySQLQuery& rQuery);
+    CppMySQLQuery &operator=(CppMySQLQuery &rQuery);
 
     virtual ~CppMySQLQuery();
 
@@ -23,31 +31,31 @@ public:
 
     int numFields();
 
-    int fieldIndex(const char* szField);
+    int fieldIndex(const char *szField);
 
-    //0...n-1列
-    const char* fieldName(int nCol);
+    // 0...n-1列
+    const char *fieldName(int nCol);
     int fieldType(int nCol);
 
     int seekRow(int offerset);
     int getIntField(int nField, int nNullValue = 0);
-    int getIntField(const char* szField, int nNullValue = 0);
+    int getIntField(const char *szField, int nNullValue = 0);
 
     INT64 getInt64Field(int nField, INT64 nNullValue = 0);
-    INT64 getInt64Field(const char* szField, INT64 nNullValue = 0);
+    INT64 getInt64Field(const char *szField, INT64 nNullValue = 0);
 
     double getFloatField(int nField, double fNullValue = 0.0);
-    double getFloatField(const char* szField, double fNullValue = 0.0);
+    double getFloatField(const char *szField, double fNullValue = 0.0);
 
-    //0...n-1列
-    const char* getStringField(int nField, const char* szNullValue = "");
-    const char* getStringField(const char* szField, const char* szNullValue = "");
+    // 0...n-1列
+    const char *getStringField(int nField, const char *szNullValue = "");
+    const char *getStringField(const char *szField, const char *szNullValue = "");
 
-    const unsigned char* getBlobField(int nField, int& nLen);
-    const unsigned char* getBlobField(const char* szField, int& nLen);
+    const unsigned char *getBlobField(int nField, int &nLen);
+    const unsigned char *getBlobField(const char *szField, int &nLen);
 
     bool fieldIsNull(int nField);
-    bool fieldIsNull(const char* szField);
+    bool fieldIsNull(const char *szField);
 
     bool eof();
 
@@ -57,11 +65,11 @@ private:
     void freeRes();
 
 private:
-    MYSQL_RES*  m_MysqlRes;
-    MYSQL_FIELD* _field;
-    MYSQL_ROW  _row;
-    int   _row_count;
-    int   _field_count;
+    MYSQL_RES *m_MysqlRes;
+    MYSQL_FIELD *_field;
+    MYSQL_ROW _row;
+    int _row_count;
+    int _field_count;
 };
 
 class CppMySQL3DB
@@ -70,23 +78,23 @@ public:
     CppMySQL3DB();
     virtual ~CppMySQL3DB();
 
-    bool open(const char* host, const char* user, const char* passwd, const char* db,
-              unsigned int port, const char* charSetName = "utf8mb4");
+    bool open(const char *host, const char *user, const char *passwd, const char *db,
+              unsigned int port, const char *charSetName = "utf8mb4");
 
-    bool setOpenParam(const char* host, const char* user, const char* passwd, const char* db,
-                      unsigned int port, const char* charSetName = "utf8mb4");
+    bool setOpenParam(const char *host, const char *user, const char *passwd, const char *db,
+                      unsigned int port, const char *charSetName = "utf8mb4");
 
     void close();
 
     /* 返回句柄 */
-    MYSQL* getMysql();
+    MYSQL *getMysql();
 
     /* 处理返回多行的查询，返回影响的行数 */
-    //返回引用是因为在CppMySQLQuery的赋值构造函数中要把成员变量_mysql_res置为空
-    CppMySQLQuery& querySQL(const char* sql, bool recon = true);
+    // 返回引用是因为在CppMySQLQuery的赋值构造函数中要把成员变量_mysql_res置为空
+    CppMySQLQuery &querySQL(const char *sql, bool recon = true);
 
     /* 执行非返回结果查询 */
-    int execSQL(const char* sql, bool recon = true);
+    int execSQL(const char *sql, bool recon = true);
 
     /* 测试mysql服务器是否存活 */
     bool ping();
@@ -111,59 +119,58 @@ public:
     bool rollback();
 
     /* 得到客户信息 */
-    const char* getClientInfo();
+    const char *getClientInfo();
 
     /* 主要功能:得到客户版本信息 */
-    const unsigned long  getClientVersion();
+    const unsigned long getClientVersion();
 
     /* 主要功能:得到主机信息 */
-    const char* getHostInfo();
+    const char *getHostInfo();
 
     /* 主要功能:得到服务器信息 */
-    const char* GetServerInfo();
+    const char *GetServerInfo();
 
-    const char* GetErrorMsg();
+    const char *GetErrorMsg();
 
-    int         GetErrorNo();
+    int GetErrorNo();
 
     /*主要功能:得到服务器版本信息*/
-    const unsigned long  GetDBVersion();
+    const unsigned long GetDBVersion();
 
     /*主要功能:得到 当前连接的默认字符集*/
-    const char*   getCharacterSetName();
+    const char *getCharacterSetName();
 
     /* 建立新数据库 */
-    int createDB(const char* name);
+    int createDB(const char *name);
 
     /* 删除制定的数据库*/
-    int dropDB(const char* name);
+    int dropDB(const char *name);
 
     /*修改当前的数据库*/
-    bool changeCurDB(const char* name);
+    bool changeCurDB(const char *name);
 
-    INT64 GetAutoIncrementID(const char* szTableName, const char* szDBName);
+    INT64 GetAutoIncrementID(const char *szTableName, const char *szDBName);
 
-    bool  SetAutoIncrementID(INT64 nId, const char* szTableName, const char* szDBName);
+    bool SetAutoIncrementID(INT64 nId, const char *szTableName, const char *szDBName);
 
 private:
-    CppMySQL3DB(const CppMySQL3DB& db);
-    CppMySQL3DB& operator=(const CppMySQL3DB& db);
+    CppMySQL3DB(const CppMySQL3DB &db);
+    CppMySQL3DB &operator=(const CppMySQL3DB &db);
 
 private:
     /* msyql 连接句柄 */
-    MYSQL* m_pMySqlDB;
+    MYSQL *m_pMySqlDB;
     CppMySQLQuery m_dbQuery;
 
-    int          m_nErrNo;
-    std::string  m_strError;
+    int m_nErrNo;
+    std::string m_strError;
 
-
-    std::string  m_strHost;
-    std::string  m_strUser;
-    std::string  m_strPwd;
-    std::string  m_strDB;
-    std::string  m_strCharSet; //字符集
-    int          m_nPort;
+    std::string m_strHost;
+    std::string m_strUser;
+    std::string m_strPwd;
+    std::string m_strDB;
+    std::string m_strCharSet; // 字符集
+    int m_nPort;
 };
 
 #endif //__MYSQL_HELPER_H__

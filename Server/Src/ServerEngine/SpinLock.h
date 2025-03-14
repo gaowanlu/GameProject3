@@ -1,6 +1,7 @@
 ﻿#ifndef __SPIN_LOCK_h__
 #define __SPIN_LOCK_h__
 #include <atomic>
+#include <xmmintrin.h>
 
 class CSpinLock
 {

@@ -2,9 +2,20 @@
 #ifndef _SQL_RESULT_H_
 #define _SQL_RESULT_H_
 
-#include <my_global.h>
+#include "CppMysql.h"
 #include <mysql.h>
+#include <unistd.h>
 #undef snprintf
+
+
+typedef __int8_t int8;
+typedef __uint8_t uint8;
+typedef __int16_t int16;
+typedef __uint16_t uint16;
+typedef __int32_t int32;
+typedef __uint32_t uint32;
+typedef __int64_t int64;
+typedef __uint64_t uint64;
 
 class CDBRecordSet
 {
@@ -26,6 +37,7 @@ public:
 	int32 GetRowCount( void );
 
 	bool get_bool( size_t idx_ );
+
 	int8 get_int8( size_t idx_ );
 	uint8 get_uint8( size_t idx_ );
 	int16 get_int16( size_t idx_ );

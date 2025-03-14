@@ -2,6 +2,7 @@
 #define __DB_STORED_PROCEDURE__
 
 #include "DBRecordSet.h"
+#include <unistd.h>
 
 class CDBStoredProcedure
 {

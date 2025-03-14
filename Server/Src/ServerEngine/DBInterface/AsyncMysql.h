@@ -3,6 +3,7 @@
 
 #include "CppMysql.h"
 #include "../LockFreeQueue.h"
+#include <functional>
 
 class AsyncQueryParam;
 class AsyncMySQLResult;

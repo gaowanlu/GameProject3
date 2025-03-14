@@ -1,7 +1,7 @@
 ﻿#ifndef _SQL_CONN_H_
 #define _SQL_CONN_H_
 
-#include <mysql.h>
+#include "CppMysql.h"
 #include "DBInterface.h"
 
 #ifdef _DEBUG

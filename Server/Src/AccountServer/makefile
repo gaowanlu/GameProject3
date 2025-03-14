@@ -5,7 +5,7 @@ MY_INCLUDE=-I$(PWD) \
 		-I../ServerEngine \
 		-I../WatcherClient \
 		-I../../Common \
-		-I../../Common/Mysql 
+		-I/usr/include/mysql 
 					 
 CC_LIB=-L/usr/lib \
 	-L/lib \
